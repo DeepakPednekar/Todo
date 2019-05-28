@@ -1,3 +1,10 @@
-<ul class="list-group">
+<ul class="list-group" *ngIf="todoList.length>0;else noTodoitems">
+  <!--<li class="list-group-item list-group-item-action">here it contains list</li>-->
   <li class="list-group-item list-group-item-action">here it contains list</li>
 </ul>
+
+<ng-template #noTodoitems>
+  <div class="row alert-warning">
+    <label class="d-block p-4">No Items found please add items</label>
+  </div>
+</ng-template>
