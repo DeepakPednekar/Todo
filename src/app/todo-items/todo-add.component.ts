@@ -12,7 +12,7 @@ export class TodoAddComponent {
 
     this.todo_form = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]{5,10}')]),
-      descr: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
     });
   }
 
