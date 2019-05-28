@@ -15,4 +15,8 @@ export class TodoServices {
 
     // return of();
   }
+
+  deleteTodoListItem(index:number){
+    this.todoList.splice(index, 1);
+  }
 }

@@ -1,7 +1,8 @@
 <ul class="list-group" *ngIf="todoList.length>0;else noTodoitems">
   <!--<li class="list-group-item list-group-item-action">here it contains list</li>-->
-  <li class="list-group-item list-group-item-action" *ngFor="let each_item of todoList">
-    {{each_item.title}}
+  <li class="list-group-item list-group-item-action" *ngFor="let each_item of todoList;index as i">
+    <p class="d-inline-block w-50"><span class="font-weight-bold h5 text-uppercase">{{each_item.title}}</span><br><small class="text-muted">{{each_item.description}}</small></p>
+    <p class="d-inline-block w-50 text-right"><button class="btn btn-danger" (click)="onDelete(i)">X</button></p>
   </li>
 </ul>
 
