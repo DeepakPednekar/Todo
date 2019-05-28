@@ -13,8 +13,9 @@ export class TodoListComponent{
 
     this.todoList = this.s_todo.todoList;
 
-    let data: TodoListItem= {title: 'test', description: 'i want to eat tuna fish'};
-    this.s_todo.addTodoItem(data);
+    // this is for test
+    // let data: TodoListItem= {title: 'test', description: 'i want to eat tuna fish'};
+    // this.s_todo.addTodoItem(data);
   }
 
   onDelete(index: number){
