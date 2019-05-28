@@ -1,6 +1,8 @@
 <ul class="list-group" *ngIf="todoList.length>0;else noTodoitems">
   <!--<li class="list-group-item list-group-item-action">here it contains list</li>-->
-  <li class="list-group-item list-group-item-action">here it contains list</li>
+  <li class="list-group-item list-group-item-action" *ngFor="let each_item of todoList">
+    {{each_item.title}}
+  </li>
 </ul>
 
 <ng-template #noTodoitems>
