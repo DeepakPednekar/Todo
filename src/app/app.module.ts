@@ -12,11 +12,13 @@ import {UserModule} from './user/user.module';
 import {TodoModule} from './todo-items/todo.module';
 import {RouterModule, Routes} from '@angular/router';
 
+// guards
+import {AuthGuard} from './guards';
+
 /////// routing start
 
 const base_routes: Routes = [
-  // {path: '', loadChildren: './todo-items/todo.module#TodoRoutingModule'},
-  {path: '', loadChildren: './todo-items/todo.module#TodoModule'},
+  {path: '', loadChildren: './todo-items/todo.module#TodoModule', canActivate: [AuthGuard]},
   {path: 'user', loadChildren: './user/user.module#UserModule'},
 ];
 
