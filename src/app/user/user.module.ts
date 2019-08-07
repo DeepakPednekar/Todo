@@ -3,15 +3,26 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
-  UserComponent,
   SignupComponent,
   LoginComponent
 } from './index';
+import {RouterModule, Routes} from '@angular/router';
 
+// for routing
+const user_routes: Routes = [
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
+];
 
 @NgModule({
-  declarations: [UserComponent, SignupComponent, LoginComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule,],
-  entryComponents: [UserComponent]
+  imports: [RouterModule.forChild(user_routes)],
+})
+export class UserRoutingModule {}
+/// end routing
+
+@NgModule({
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule, UserRoutingModule],
+  declarations: [SignupComponent, LoginComponent],
+  exports: [UserRoutingModule]
 })
 export class UserModule {}

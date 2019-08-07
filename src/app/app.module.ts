@@ -15,11 +15,14 @@ import {RouterModule, Routes} from '@angular/router';
 /////// routing start
 
 const base_routes: Routes = [
-  {path: '', loadChildren: './todo-items/todo.module#TodoRoutingModule'},
+  // {path: '', loadChildren: './todo-items/todo.module#TodoRoutingModule'},
+  {path: '', loadChildren: './todo-items/todo.module#TodoModule'},
+  {path: 'user', loadChildren: './user/user.module#UserModule'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(base_routes)]
+  imports: [RouterModule.forRoot(base_routes)],
+  exports: [RouterModule]
 })
 export class BaseRouting {}
 
@@ -31,10 +34,8 @@ export class BaseRouting {}
   ],
   imports: [
     BrowserModule,
-    TodoModule,
     NgbModule,
     CommonModule,
-    UserModule,
     BaseRouting
   ],
   providers: [],
