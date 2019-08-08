@@ -1,21 +1,27 @@
 <h1 class="text-center">Login</h1>
+<form [formGroup]="form_login">
+
 <div class="row">
   <div class="offset-3 col-md-6 col-sm-12">
 
     <div class="form-group text-left">
       <label class="">Username</label>
-      <input class="form-control" type="text" placeholder="please enter username">
+      <input class="form-control" type="text" placeholder="please enter username" formControlName="username"
+      [ngClass]="{'alert alert-danger': fc_username.invalid && fc_username.touched}">
     </div>
 
     <div class="form-group text-left">
       <label class="">Password</label>
-      <input class="form-control" type="password" placeholder="please enter password">
+      <input class="form-control" type="password" placeholder="please enter password" formControlName="password"
+      [ngClass]="{'alert alert-danger': fc_password.invalid && fc_password.touched}">
+      <span class="text-muted" *ngIf="fc_password.invalid && fc_password.touched">password must be greater than 6 characters</span>
     </div>
 
     <div class="form-group">
-      <button class="btn btn-success">Submit</button>
+      <button class="btn btn-success" [disabled]="form_login.invalid" (click)="onSubmit()">Submit</button>
       &nbsp;
       <a routerLink="/user/signup">not a user ?</a>
     </div>
   </div>
 </div>
+</form>
