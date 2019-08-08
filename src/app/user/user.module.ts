@@ -4,9 +4,11 @@ import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
   SignupComponent,
-  LoginComponent
+  LoginComponent,
+  UserService
 } from './index';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 // for routing
 const user_routes: Routes = [
@@ -22,8 +24,12 @@ export class UserRoutingModule {}
 /// end routing
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule, UserRoutingModule],
+  imports: [CommonModule,
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule, UserRoutingModule],
   declarations: [SignupComponent, LoginComponent],
-  exports: [UserRoutingModule]
+  exports: [UserRoutingModule],
+  providers: [UserService]
 })
 export class UserModule {}
