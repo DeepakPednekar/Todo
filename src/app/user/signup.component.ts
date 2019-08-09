@@ -8,8 +8,16 @@ import {UserService} from './user.service';
 })
 export class SignupComponent {
 
+  const_alert_class: Object; // buffer
+  alert_class: Object = {};
+  alert_msg: string = '';
+
   form_signup: FormGroup;
   constructor(private s_user: UserService) {
+
+    this.const_alert_class = {};
+    this.const_alert_class['success'] = {'alert alert-success': true};
+    this.const_alert_class['error'] = {'alert alert-danger': true};
 
     this.form_signup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -24,15 +32,29 @@ export class SignupComponent {
 
     let value = this.form_signup.getRawValue();
     delete value['c_password'];
+
     this.s_user.register(value).subscribe( ret_data => {
+
       if(ret_data.type == "+OK"){
+        this.alert_class = this.const_alert_class['success'];
+        this.alert_msg = `User ${this.fc_email.value} added successfully`;
         this.form_signup.reset();
+        return;
       }
+
+      this.alert_class = this.const_alert_class['error'];
+      this.alert_msg = `Unable to add User ${this.fc_email.value}`;
 
     });
 
+    setTimeout(()=>this.cleanMsg(), 5000);
+
   }
 
+  cleanMsg(){
+    this.alert_msg = '';
+    delete this.alert_class;
+  }
 
   /// getters
 
