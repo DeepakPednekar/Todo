@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {TodoServices} from './todo.services';
+import {TodoListItem} from './todo-items.interfaces';
 
 @Component({
   selector: 'app-todoitem-add',
@@ -19,7 +20,16 @@ export class TodoAddComponent {
 
   onSubmit(){
     let values = this.todo_form.getRawValue();
-    // now submit these server
-    this.s_todoservice.addTodoItem(values);
-  }
+
+    this.s_todoservice.addTodoItem(values).subscribe( ret_data => {
+
+     if ( ret_data.type == "+OK"){
+       let id = ret_data['return'];
+       values['id'] = id;
+       this.s_todoservice.todoList.push( <TodoListItem> values);
+     }
+
+    });
+
+  } // end of submit
 }
